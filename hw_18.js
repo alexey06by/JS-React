@@ -10,21 +10,34 @@
    console.log(getSum(100));
 
    // Task 2
-    function calculateOverpayment (creditAmount){    
-        return creditAmount * 0.17 * 5;
+    function calculateOverpayment (creditAmount){
+        let overpayment = 0;
+        let monthlyOverpayment = 0;
+        let mainMonthlyPayment = Number((creditAmount / 60).toFixed(2));;
+        let paymentLeft = creditAmount;
+        for (let i = 1; i <= 60; i++){
+            monthlyOverpayment = Number((paymentLeft * 0.17/12).toFixed(2));
+            overpayment = Number((overpayment + monthlyOverpayment).toFixed(2));
+            paymentLeft = Number((paymentLeft - mainMonthlyPayment).toFixed(2));
+        }   
+        return overpayment;
     }
     console.log(calculateOverpayment(10000));
 
     // Task 3
     function trimString (string, valueFrom, valueTo){
-        return string.substring(valueFrom, valueTo);
+        let newString = '';
+        for (let i = valueFrom; i < valueTo; i++){
+            newString = newString + string[i];
+        }
+        return newString;
     }
     console.log(trimString("Test string", 0, 4));
 
     // Task 4
     function getSumNumbers(number){
-        number= String(number);
-        let numbers = number.split("");
+        let numberConvertedToString = String(number);
+        let numbers = numberConvertedToString.split("");
         let result = 0;
         for (let i = 0; i<numbers.length; i++){
             result=result+Number(numbers[i]);
@@ -39,14 +52,16 @@
         if (a === b){
             result = a;
         } else if (a<b){
-            while (a<=b){
-                result = result +a;
-                a = a+1;
+            let aa = a;            
+            while (aa<=b){
+                result = result +aa;
+                aa = aa+1;
             }
         } else{
-            while (b<=a){
-                result = result +b;
-                b= b+1;
+            let bb = b;
+            while (bb<=a){
+                result = result +bb;
+                bb = bb+1;
             }     
         }
         return result;
