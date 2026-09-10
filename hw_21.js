@@ -12,7 +12,7 @@
     const updatedUsers = users.map((value, index) => `member ${index+1}: ${value}`);
     console.log(updatedUsers);
     function updateUser(user,index){
-        return `member ${index+1}: ` + user 
+        return `member ${index+1}: ${user}` 
     }
     const updatedUsers2 = users.map(updateUser);
     console.log(updatedUsers2);
@@ -75,18 +75,11 @@
     console.log(calculateGroupCredit(students))
 
     // Task 2
+    
     function deleteVowels (str){
-        const newStr = str.split("").reduce((accum, value)=>{
-            if (value === "a" || value === "A"){}
-            else if (value === "e" || value === "E"){}
-            else if (value === "u" || value === "U"){}
-            else if (value === "i" || value === "I"){}
-            else if (value === "o" || value === "O"){}
-            else if (value === "i" || value === "I"){}
-            else {
-                accum+=value;
-            }
-            return accum;
+        const vowels = ["a","e","u","i","o",]
+        const newStr = str.split("").reduce((accum, value)=>{            
+            return vowels.includes(value.toLowerCase()) ? accum : accum+=value
         }, "");
         return newStr;
     }
